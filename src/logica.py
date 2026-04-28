@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd 
 
 #La función cargar_datos sirve para leer los datos desde el archivo CSV y los 
 #convierte en un formato que Python pueda analizar

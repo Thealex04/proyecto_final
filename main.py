@@ -26,16 +26,20 @@ def main():
 
     ciclista1 = Ciclista("Sandro",21,93,1.87)
     ciclista2 = Ciclista("Andres",18,65,1.82)
+    ciclista3 = Ciclista("Hugo", 19, 71, 1.70 )
 
     ciclista1.agregar_ruta(ruta1)
     ciclista1.agregar_ruta(ruta3)
     ciclista2.agregar_ruta(ruta3)
     ciclista2.agregar_ruta(ruta2)
+    ciclista3.agregar_ruta(ruta1)
+    ciclista3.agregar_ruta(ruta3)
 
     print(ciclista1.resumen())
     print("")
     print(ciclista2.resumen())
     print("")
+    print(ciclista3.resumen())
 
     print(ruta1.terreno())
     print(ruta1.dificultad())
