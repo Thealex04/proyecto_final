@@ -1,46 +1,59 @@
-from src.logica import cargar_datos, limpiar_datos
+from src.logica import cargar_datos, limpiar_datos, calcular_velocidad, estadisticas
 from src.modelos import RutaMTB, RutaCarretera, RutaCiclocross, Ciclista
 
 
 def main():
     print("Proyecto ciclismo iniciado\n")
-
+   
+    # Carga y análisis de datos
+    
     rutas = cargar_datos("data/rutas.csv")
     competiciones = cargar_datos("data/competiciones.csv")
 
     if rutas is not None:
-        print("Datos de las rutas: ")
+        print(" Datos de las rutas:")
         rutas = limpiar_datos(rutas)
+        rutas = calcular_velocidad(rutas)
         print(rutas, "\n")
 
+        print(" --- ESTADÍSTICAS ---")
+        estadisticas_rutas = estadisticas(rutas)
+
+        for clave, valor in estadisticas_rutas.items():
+            print(f"{clave}: {round(valor, 2)}")
+
     if competiciones is not None:
-        print("Datos de las competiciones: ")
+        print("\n Datos de las competiciones:")
         competiciones = limpiar_datos(competiciones)
         print(competiciones.head(), "\n")
 
-    #Prueba clases POO
+    
+    # Preubas de POO
 
-    ruta1 = RutaMTB("2025-05-05",25, 60, 600, "MTB")
-    ruta2 = RutaCarretera("2025-07-05",45, 90, 200, "Carretera")
-    ruta3 = RutaCiclocross("2025-08-05",35, 80, 400, "Ciclocross")
+    print("\n --- PRUEBA DE CLASES (POO) ---\n")
 
-    ciclista1 = Ciclista("Sandro",21,93,1.87)
-    ciclista2 = Ciclista("Andres",18,65,1.82)
-    ciclista3 = Ciclista("Hugo", 19, 71, 1.70 )
+    ruta1 = RutaMTB("2025-05-05", 25, 60, 600, "MTB")
+    ruta2 = RutaCarretera("2025-07-05", 45, 90, 200, "Carretera")
+    ruta3 = RutaCiclocross("2025-08-05", 35, 80, 400, "Ciclocross")
+
+    ciclista1 = Ciclista("Sandro", 21, 93, 1.87)
+    ciclista2 = Ciclista("Andres", 18, 65, 1.82)
+    ciclista3 = Ciclista("Hugo", 19, 71, 1.70)
 
     ciclista1.agregar_ruta(ruta1)
     ciclista1.agregar_ruta(ruta3)
+
     ciclista2.agregar_ruta(ruta3)
     ciclista2.agregar_ruta(ruta2)
+
     ciclista3.agregar_ruta(ruta1)
     ciclista3.agregar_ruta(ruta3)
 
-    print(ciclista1.resumen())
-    print("")
-    print(ciclista2.resumen())
-    print("")
-    print(ciclista3.resumen())
+    print(ciclista1.resumen(), "\n")
+    print(ciclista2.resumen(), "\n")
+    print(ciclista3.resumen(), "\n")
 
+    print(" --- INFORMACIÓN DE RUTAS ---")
     print(ruta1.terreno())
     print(ruta1.dificultad())
     print(ruta3.porteo())
@@ -49,4 +62,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

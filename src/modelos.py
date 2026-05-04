@@ -1,4 +1,3 @@
-
 #Clase Ruta
 class Ruta:
     def __init__(self, fecha, distancia, tiempo, desnivel, tipo):
