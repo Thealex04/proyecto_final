@@ -23,28 +23,25 @@ def limpiar_datos(df):
 
 
 def calcular_velocidad(df):
-    # Convertimos todos los valores de la columna tiempo en string
-    df['tiempo'] = df['tiempo'].astype(str)
-    
-    # Divide la columna tiempo en dos partes
-    tiempo_split = df['tiempo'].str.split(":", expand=True)
+    # Limpiamos el formato
+    df['tiempo'] = df['tiempo'].astype(str).str.strip()
 
-    # Separamos las horas y los minutos y los convertimos a enteros
-    df['horas'] = tiempo_split[0].astype(int)
-    df['minutos'] = tiempo_split[1].astype(int)
+    #Convertimos el formato de h:mm a horas
+    df['tiempo_horas'] = pd.to_timedelta(df['tiempo'] + ":00").dt.total_seconds() /3600
 
-    # Lo convertimos todo a minutos
-    df['tiempo_min'] = df['horas'] * 60 + df['minutos']
+    #Elimina datos inválidos
+    df = df.dropna(subset=['tiempo_horas'])
+    df = df[df['tiempo_horas'] > 0]
 
-    # Ya que tenemos el tiempo en minutos, calculamos la velocidad con la siguiente formula
-    df['velocidad'] = df.eval('distancia / (tiempo_min/60)')
+    df['velocidad'] = df['distancia'] / df['tiempo_horas']
+
     return df
 
 
 def estadisticas(df):
     distancia_total = df['distancia'].sum()
     distancia_media = df['distancia'].mean()
-    tiempo_total = df['tiempo_min'].sum()
+    tiempo_total = df['tiempo_horas'].sum()
 
     if tiempo_total == 0:
         velocidad_media = 0
@@ -65,9 +62,40 @@ def estadisticas(df):
 
 
 def calcular_progreso(df):
-    pass
-    df.sort_values('fecha')
-    
+    # aseguramos el formato de fecha que queremos
+    df['fecha'] = pd.to_datetime(df['fecha'], dayfirst=True)
+
+    # ordenamos por fecha
+    df = df.sort_values('fecha')
+
+    # lo dividimos en inicio vs actual
+    primeras = df.head(5)
+    ultimas = df.tail(5)
+
+    # calculamos las medias
+    velocidad_inicio = primeras['velocidad'].mean()
+    velocidad_fin = ultimas['velocidad'].mean()
+
+    distancia_inicio = primeras['distancia'].mean()
+    distancia_fin = ultimas['distancia'].mean()
+
+    desnivel_inicio = primeras['desnivel'].mean()
+    desnivel_fin = ultimas['desnivel'].mean()
+
+    #evitar divisiones por 0
+    mejora_velocidad = 0 if velocidad_inicio == 0 else ((velocidad_fin - velocidad_inicio) /velocidad_inicio) * 100
+    mejora_distancia = 0 if distancia_inicio == 0 else ((distancia_fin - distancia_inicio) /distancia_inicio) * 100
+    mejora_desnivel = 0 if desnivel_inicio == 0 else ((desnivel_fin - desnivel_inicio) / desnivel_inicio) * 100
+
+    #indice global
+    indice = (mejora_velocidad * 0.5) + (mejora_distancia * 0.3) + (mejora_desnivel * 0.2)
+
+    return {
+        "mejora_velocidad_%": round(mejora_velocidad, 2),
+        "mejora_distancia_%": round(mejora_distancia, 2),
+        "mejora_desnivel_%": round(mejora_desnivel, 2),
+        "indice_progreso": round(indice, 2)
+    }
 
 
 
