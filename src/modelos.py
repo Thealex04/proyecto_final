@@ -9,7 +9,7 @@ class Ruta:
 
     def velocidad_media(self):
         if self.tiempo > 0:
-            return self.distancia / (self.tiempo /60)
+            return self.distancia / self.tiempo
         else:
             return 0
 
@@ -70,7 +70,7 @@ class Ciclista:
         if tiempo_total == 0:
             return 0
 
-        return distancia_total / (tiempo_total / 60)
+        return distancia_total / tiempo_total
 
     def resumen(self):
         return (

@@ -60,7 +60,7 @@ def estadisticas(df):
     if tiempo_total == 0:
         velocidad_media = 0
     else:
-        velocidad_media = distancia_total / (tiempo_total/60)
+        velocidad_media = distancia_total / tiempo_total
 
     desnivel_total = df['desnivel'].sum()
 

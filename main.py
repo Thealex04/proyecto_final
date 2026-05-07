@@ -1,5 +1,6 @@
 from src.logica import cargar_datos, limpiar_datos, calcular_velocidad, estadisticas, calcular_progreso
 from src.modelos import RutaMTB, RutaCarretera, RutaCiclocross, Ciclista
+from src.visualizacion import grafico_distancia, grafico_velocidad, grafico_desnivel
 
 
 def main():
@@ -20,7 +21,7 @@ def main():
         estadisticas_rutas = estadisticas(rutas)
 
         for clave, valor in estadisticas_rutas.items():
-            print(f"{clave}: {round(valor, 2)}")
+            print(f"{clave}: {valor}")
 
         print("\n --- Progreso del ciclista ---")
         progreso = calcular_progreso(rutas)
@@ -33,6 +34,12 @@ def main():
         competiciones = limpiar_datos(competiciones)
         print(competiciones.head(), "\n")
 
+    df = cargar_datos("data/rutas.csv")
+    grafico_distancia(df)
+    grafico_velocidad(df)
+    grafico_desnivel(df)
+
+    print("Gráficos generados correctamente")
     
     # Preubas de POO
 
