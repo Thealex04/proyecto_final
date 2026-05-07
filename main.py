@@ -1,4 +1,4 @@
-from src.logica import cargar_datos, limpiar_datos, calcular_velocidad, estadisticas
+from src.logica import cargar_datos, limpiar_datos, calcular_velocidad, estadisticas, calcular_progreso
 from src.modelos import RutaMTB, RutaCarretera, RutaCiclocross, Ciclista
 
 
@@ -21,6 +21,12 @@ def main():
 
         for clave, valor in estadisticas_rutas.items():
             print(f"{clave}: {round(valor, 2)}")
+
+        print("\n --- Progreso del ciclista ---")
+        progreso = calcular_progreso(rutas)
+
+        for clave, valor in progreso.items():
+            print(f"{clave}: {valor}")
 
     if competiciones is not None:
         print("\n Datos de las competiciones:")
