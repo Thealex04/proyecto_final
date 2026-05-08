@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
+
+os.makedirs("static/graficos", exist_ok=True)
 
 # Aplicamos un estilo visual predifinido a todos los graficos para que se vean más limpios y claros
 plt.style.use("seaborn-v0_8")

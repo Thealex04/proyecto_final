@@ -1,7 +1,8 @@
 from src.logica import cargar_datos, limpiar_datos, calcular_velocidad, estadisticas, calcular_progreso
 from src.modelos import RutaMTB, RutaCarretera, RutaCiclocross, Ciclista
-from src.visualizacion import grafico_distancia, grafico_velocidad, grafico_desnivel
-
+from src.visualizacion import grafico_distancia, grafico_velocidad, grafico_desnivel, grafico_tipos_ruta, grafico_paises_ganadores
+from src.competiciones import victorias_por_pais, top_ciclistas, ciclistas_con_mas_victorias
+from src.recomendaciones import informe_completo
 
 def main():
     print("Proyecto ciclismo iniciado\n")
@@ -29,19 +30,39 @@ def main():
         for clave, valor in progreso.items():
             print(f"{clave}: {valor}")
 
+        print("\n Generando gráficos sobre las rutas")
+
+        grafico_distancia(rutas)
+        grafico_velocidad(rutas)
+        grafico_desnivel(rutas)
+        grafico_tipos_ruta(rutas)
+
+        print("\n --- Recomendaciones --- ")
+        recomendaciones = informe_completo(rutas, progreso)
+
+        for recomendacion in recomendaciones:
+            print(f" {recomendacion}")
+
+
     if competiciones is not None:
         print("\n Datos de las competiciones:")
         competiciones = limpiar_datos(competiciones)
         print(competiciones.head(), "\n")
 
-    df = cargar_datos("data/rutas.csv")
-    grafico_distancia(df)
-    grafico_velocidad(df)
-    grafico_desnivel(df)
+        print("\n Generando gráficos sobre las competiciones")
+        grafico_paises_ganadores(competiciones)
 
-    print("Gráficos generados correctamente")
+        print("\n Top ciclistas:")
+        print(top_ciclistas(competiciones))
+
+        print("\n Ciclista con más victorias:")
+        print(ciclistas_con_mas_victorias(competiciones))
+
+        print("\n Victorias por pais:")
+        print(victorias_por_pais(competiciones))
+
     
-    # Preubas de POO
+    # Pruebas de POO
 
     print("\n --- PRUEBA DE CLASES (POO) ---\n")
 
