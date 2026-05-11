@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/style.css')}}">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="/rutas">Rutas</a>
+        <a href="/competiciones">Competiciones</a>
+        <a href="/login" >Login</a>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p> Proyecto de análisis ciclista </p>
+</footer>
+
+</body>
+</html>
