@@ -4,12 +4,12 @@
         <title>Proyecto de Ciclismo</title>
     </head>
     <body>
-    <h1>Proyecto de análisis de rutas y compiticiones de ciclismo</h1>
-    
-    <ul>
-        <li><a href="/rutas"> Rutas </a></li>
-        <li><a href="/competiciones"> Competiciones </a></li>
-    </ul>
+    {% extends 'base.html' %}
 
+    {% block content %}
+    <h2>Bienvenido a Panel Ciclista</h2>
+    <p>Analiza tus rutas, tu progreso y las grandes competiciones del ciclismo.</p>
+
+    {% endblock %}
     </body>
 </html>

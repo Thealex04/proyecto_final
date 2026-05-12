@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Proyecto de Ciclismo</title>
+    </head>
+    <body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <h2>Rutas del ciclista</h2>
+    <p>Aquí iran las estadísticas de los ciclistas junto con sus gráficos</p>
+
+    <h2> Estadísticas de tus rutas</h2>
+    
+    {% if estadisticas %}
+        <ul>
+            <li><strong>Distancia total: </strong> {{estadisticas.distancia_total}}km</li>
+            <li><strong>Distancia media: </strong> {{estadisticas.distancia_media}}km</li>
+            <li><strong>Tiempo total: </strong> {{estadisticas.tiempo_total}} horas</li>
+            <li><strong>Velocidad media: </strong> {{estadisticas.velocidad_media}} km/h</li>
+            <li><strong>Desnivel total: </strong> {{estadisticas.desnivel_total}} m</li>
+        </ul>
+
+    {% else %}
+        <p> No se pudieron cargar las estadísticas</p>
+    {% endif %}
+
+    {% endblock %}
+    </body>
+</html>

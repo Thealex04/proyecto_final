@@ -1,0 +1,29 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Ciclista</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a Panel Ciclista</h1>
+        <nav>
+            <a href="{{ url_for('inicio')}}">Inicio</a>
+            <a href="{{ url_for('rutas')}}">Rutas</a>
+            <a href="{{ url_for('competiciones')}}">Competiciones</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Proyecto final - Panel Ciclista</p>
+    </footer>
+</body>
+
+
+</html>
