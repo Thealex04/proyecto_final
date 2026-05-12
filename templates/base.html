@@ -13,11 +13,24 @@
             <a href="{{ url_for('inicio')}}">Inicio</a>
             <a href="{{ url_for('rutas')}}">Rutas</a>
             <a href="{{ url_for('competiciones')}}">Competiciones</a>
+            <a href="{{ url_for('registro')}}">Registro</a>
+            <a href="{{ url_for('login')}}">Login</a>
+            <a href="{{ url_for('dashboard')}}">Dashboard</a>
+            <a href="{{ url_for('logout')}}">Logout</a>
         </nav>
     </header>
 
     <main>
         {% block content %}{% endblock %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}    
+                </ul>
+            {% endif %}
+        {% endwith %}
     </main>
 
     <footer>
