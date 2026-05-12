@@ -104,7 +104,7 @@ def grafico_paises_ganadores(df):
 
     paises = df["pais"].value_counts()
 
-    plt.figure(figsize=(8,5))
+    plt.figure(figsize=(14,6))
 
     plt.bar(paises.index, paises.values, color="purple", label="Victorias")
 
@@ -112,7 +112,9 @@ def grafico_paises_ganadores(df):
     plt.xlabel("Pais")
     plt.ylabel("Numero de victorias")
 
-    plt.grid(True)
+    plt.xticks(rotation=45, ha="right")
+
+    plt.grid(True, axis="y", linestyle="--", alpha=0.7)
 
     plt.legend()
 

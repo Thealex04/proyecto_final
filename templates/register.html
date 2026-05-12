@@ -1,21 +1,37 @@
-<!DOCTYPE html>
-<html>
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-    {% block content %}
-    <h2> Registro de usuario</h2>
+{% block content %}
+<h2> Registro de usuario</h2>
 
-    <form method="POST">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" name="nombre" id="nombre" required><br><br>
+<form method="POST">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" name="nombre" id="nombre" required><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" id="email" required><br><br>
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" id="email" required><br><br>
 
-        <label for="password">Contraseña:</label><br>
-        <input type="password" name="password" id="password" required><br><br>
+    <label for="password">Contraseña:</label><br>
+    <input type="password" name="password" id="password" required><br><br>
 
-        <button type="submit">Registrarse</button>
-    </form>
-    {% endblock%}
-</html>
+    <input type="checkbox" id="mostrarContraseña">
+    <label for="mostrarContraseña">Mostrar contraseña</label>
+
+    <br><br>
+
+    <button type="submit">Registrarse</button>
+</form>
+
+# Hacemos un script que permite tener visible la contraseña si lo deseamos
+<script>
+    const checkbox = document.getElementById("mostrarContraseña")
+    const password = document.getElementById("password")
+
+    checkbox.addEventListener("change", function() {
+        if (this.checked) {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+        });
+</script>
+{% endblock%}
