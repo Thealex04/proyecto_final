@@ -22,7 +22,7 @@ def load_user(user_id):
     return Usuario.query.get(int(user_id))
 
 @app.route("/registro", methods=["GET","POST"])
-def register():
+def registro():
     if request.method == "POST":
         nombre = request.form["nombre"]
         email = request.form["email"]
@@ -51,7 +51,7 @@ def register():
 
 @app.route("/login", methods=["GET","POST"])
 def login():
-    if request.methods == "POST":
+    if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
 

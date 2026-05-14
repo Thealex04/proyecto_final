@@ -1,15 +1,57 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Proyecto de Ciclismo</title>
-    </head>
-    <body>
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-    {% block content %}
-    <h2>Bienvenido a Panel Ciclista</h2>
-    <p>Analiza tus rutas, tu progreso y las grandes competiciones del ciclismo.</p>
+{% block content %}
 
-    {% endblock %}
-    </body>
-</html>
+<section class="hero">
+    <div class="hero-overlay">
+        <h1>Analiza tu rendimiento ciclista</h1>
+        <p>
+            Registra tus rutas, estudia tu progreso y mejora tu rendimiento
+            con estadísticas, gráficos y recomendaciones personalizadas.
+        </p>
+
+        <div class="hero-buttons">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('dashboard')}}" class="btn-btn-primary">
+                    Ir a mi panel
+                </a>
+            {% else %}
+                <a href="{{ url_for('login')}}" class="btn btn-primary">
+                    Iniciar sesión
+                </a>
+                <a href="{{ url_for('registro')}}" class="btn btn-secondary">
+                    Registrarse
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>¿Qué puedes hacer en Panel Ciclista?</h2>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3> Estadísticas avanzadas</h3>
+            <p> Analiza distancia, velocidad, desnivel y evolución</p>
+        </div>
+    </div>
+
+    <div class="feature-card">
+        <h3> Gráficos automáticos</h3>
+        <p> Visualiza tu progreso con gráficos interactivos</p>
+    </div>
+
+    <div class="feature-card">
+        <h3> Competiciones </h3>
+        <p>Consulta resultados y victorias de las mejores competiciones del mundo</p>
+    </div>
+
+    <div class="feature-card">
+        <h3> Recomendaciones</h3>
+        <p> Recibe consejos personalizados según tu rendimiento</p>
+    </div>
+</section>
+
+{% endblock %}
+ 

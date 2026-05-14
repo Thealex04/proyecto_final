@@ -8,16 +8,28 @@
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Panel Ciclista</h1>
+        <div class="header-container">
+        <a href="{{ url_for('inicio')}}" class="logo">
+            <img src="{{ url_for('static', filename='img/logo.jpeg')}}"
+                alt="Logo Panel Ciclista">
+        </a>
+
+        <div class="header-content">
+        <h1>Panel Ciclista</h1>
         <nav>
             <a href="{{ url_for('inicio')}}">Inicio</a>
             <a href="{{ url_for('rutas')}}">Rutas</a>
             <a href="{{ url_for('competiciones')}}">Competiciones</a>
-            <a href="{{ url_for('registro')}}">Registro</a>
-            <a href="{{ url_for('login')}}">Login</a>
-            <a href="{{ url_for('dashboard')}}">Dashboard</a>
-            <a href="{{ url_for('logout')}}">Logout</a>
+
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('dashboard')}}">Mi panel</a>
+                <a href="{{ url_for('logout')}}">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('login')}}">Iniciar sesión</a>
+            {% endif %}
         </nav>
+        </div>
+        </div>
     </header>
 
     <main>
@@ -34,7 +46,10 @@
     </main>
 
     <footer>
-        <p>Proyecto final - Panel Ciclista</p>
+        <div class="footer-content">
+            <img src="{{ url_for('static', filename='img/logo.jpeg')}}" alt="Logo Panel Ciclista">
+            <p>© 2026 Panel Ciclista - Proyecto final de Curso de Especialización en Python</p>
+        </div>
     </footer>
 </body>
 
