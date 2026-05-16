@@ -10,13 +10,18 @@ body {
     color: #222;
     background-color: #f3f3f6;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 /* Seccion Hero */
 
 .hero {
     position: relative;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     background-image: url("../img/ciclismo_fondo.jpg");
     background-size: cover;
     background-position: center;
@@ -46,8 +51,8 @@ body {
 
 /*Título principal */
 .hero-overlay h1{
-    font-size: 4rem;
-    font-weight: 700;
+    font-size: 4.5rem;
+    font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.1;
 }
@@ -184,82 +189,133 @@ body {
 }
 
 header {
-    background: linear-gradient(90deg, #0f172a, #1e3a8a);
-    color: white;
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    background: linear-gradient(90deg, #08142d, #1e3a8a);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    padding: 20px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 
 .header-container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
 }
 
-.header-logo img{
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    display: block;
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.header-content{
-    flex: 1;
-    text-align: center;
+.logo-titulo img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 18px;
+    background: white;
+    padding: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease;
 }
 
-.header-content h1{
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
+.logo-titulo img:hover {
+    transform: scale(1.05);
+}
+
+.logo-titulo h1 {
+    margin: 0;
+    font-size: 3.5rem;
     font-weight: 800;
-}
-
-header h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
+    color: white;
     letter-spacing: 1px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.35);
 }
 
+/* Menu de navegacion */
 
 nav {
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
+    font-size: 1.15rem;
     font-weight: 600;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
+    padding: 14px 22px;
+    border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 nav a:hover {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.12);
     transform: translateY(-2px);
 }
 
 nav.active {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(37, 99, 235, 0.9);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .logo-titulo h1 {
+        font-size: 2.5rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 567px) {
+    header {
+        padding: 20px;
+    }
+
+    .logo-titulo{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo-titulo img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .logo-titulo h1 {
+        font-size: 2rem;
+    }
+
+    nav a {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
 }
 
 
 /* Contenido principal */
 
 main {
-    max-width: 1000px;
-    margin: 30px auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     background: white;
-    padding: 30px;
+    padding: 0;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }

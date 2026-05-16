@@ -9,13 +9,12 @@
 <body>
     <header>
         <div class="header-container">
-        <a href="{{ url_for('inicio')}}" class="logo">
-            <img src="{{ url_for('static', filename='img/logo.jpeg')}}"
-                alt="Logo Panel Ciclista">
-        </a>
+            <div class="logo-titulo">
+                <img src="{{ url_for('static', filename='img/logo.jpeg')}}"
+                    alt="Logo Panel Ciclista">
+                <h1>Panel Ciclista</h1>
+            </div>
 
-        <div class="header-content">
-        <h1>Panel Ciclista</h1>
         <nav>
             <a href="{{ url_for('inicio')}}">Inicio</a>
             <a href="{{ url_for('rutas')}}">Rutas</a>
@@ -28,7 +27,7 @@
                 <a href="{{ url_for('login')}}">Iniciar sesión</a>
             {% endif %}
         </nav>
-        </div>
+    
         </div>
     </header>
 
