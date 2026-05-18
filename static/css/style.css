@@ -352,6 +352,98 @@ textarea {
     border-radius: 6px;
 }
 
+.form-container {
+    max-width: 500px;
+    margin: 80px auto;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+    color: #111827;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Checkbox para mostrar contraseña */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.form-check input {
+    width: auto;
+}
+
+/* Boton enviar */
+.btn-submit {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Enlace inferior */
+.form-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1rem;
+}
+
+.form-link a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+}
+
+
 /*Botones*/
 button {
     background: #2563eb;
@@ -384,11 +476,11 @@ ul li {
 /* Footer */
 
 footer {
-    background: #0f172a;
-    color: #cbd5e1;
-    padding: 2rem 1rem;
-    margin-top: 4rem;
-    text-align: center;
+    background: linear-gradient(90deg, #08142d, #1e3a8a);
+    color: white;
+    margin-top: 80px;
+    padding: 40px 20px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
 }
 
 footer p {
@@ -408,16 +500,31 @@ footer a:hover {
 }
 
 .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .footer-content img {
-    width: 140px;
-    height: auto;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
+    border-radius: 12px;
+    background: white;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.footer-content p{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
 }
 
 /* Responsive menu y footer */
