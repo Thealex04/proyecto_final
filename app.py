@@ -4,7 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import Config
 from src.logica import cargar_datos, limpiar_datos, calcular_velocidad, estadisticas, calcular_progreso
-from src.models_db import db, Usuario
+from src.recomendaciones import informe_completo
+from src.models_db import db, Usuario, RutaDB
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -74,25 +75,87 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html")
+    rutas_usuario = RutaDB.query.filter_by(usuario_id=current_user.id).all()
+
+    # Si no tiene rutas todavía
+    if not rutas_usuario:
+        return render_template(
+            "dashboard.html",
+            estadisticas_rutas = None,
+            progreso = None,
+            recomendaciones = [],
+            rutas = []
+        )
+    
+    # Convertimos a DataFrame
+    import pandas as pd
+
+    datos = []
+    for ruta in rutas_usuario:
+        horas, minutos = map(int, ruta.tiempo.split(":"))
+        tiempo_horas = horas + minutos / 60
+
+        datos.append({
+            "fecha": ruta.fecha,
+            "distancia": ruta.distancia,
+            "tiempo": ruta.tiempo,
+            "tiempo_horas": tiempo_horas,
+            "desnivel": ruta.desnivel,
+            "velocidad": ruta.velocidad,
+            "tipo": ruta.tipo
+        })
+
+    df = pd.DataFrame(datos)
+
+    estadisticas_rutas = estadisticas(df)
+    progreso = calcular_progreso(df)
+    recomendaciones = informe_completo(df, progreso)
+
+    return render_template(
+        "dashboard.html",
+        estadisticas_rutas = estadisticas_rutas,
+        progreso = progreso,
+        recomendaciones = recomendaciones,
+        rutas = rutas_usuario
+        )
 
 @app.route("/")
 def inicio(): 
     return render_template("index.html")
 
-@app.route("/rutas")
-def rutas():
-    rutas_df = cargar_datos("data/rutas.csv")
+@app.route("/nueva_ruta", methods=["GET","POST"])
+@login_required
+def nueva_ruta():
+    if request.method == "POST":
+        fecha = request.form["fecha"]
+        distancia = float(request.form["distancia"])
+        tiempo = request.form["tiempo"]
+        desnivel = int(request.form["desnivel"])
+        tipo = request.form["tipo"]
 
-    if rutas_df is not None:
-        rutas_df = limpiar_datos(rutas_df)
-        rutas_df = calcular_velocidad(rutas_df)
+        horas, minutos = map(int, tiempo.split(":"))
+        tiempo_horas = horas + minutos / 60
 
-        stats = estadisticas(rutas_df)
+        velocidad = distancia / tiempo_horas if tiempo_horas > 0 else 0
 
-        return render_template("rutas.html", estadisticas=stats)
+        ruta = RutaDB(
+            fecha = fecha,
+            distancia = distancia,
+            tiempo = tiempo,
+            desnivel = desnivel, 
+            tipo = tipo,
+            velocidad = velocidad,
+            usuario_id = current_user.id
+        )
+
+        db.session.add(ruta)
+        db.session.commit()
+
+        flash("Ruta añadidad correctamente")
+        return redirect(url_for("dashboard"))
     
-    return render_template("rutas.html", estadisticas=None)
+    return render_template("nueva_ruta.html")
+
 
 @app.route("/competiciones")
 def competiciones():

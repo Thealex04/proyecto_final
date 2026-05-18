@@ -17,14 +17,14 @@
 
         <nav>
             <a href="{{ url_for('inicio')}}">Inicio</a>
-            <a href="{{ url_for('rutas')}}">Rutas</a>
             <a href="{{ url_for('competiciones')}}">Competiciones</a>
 
             {% if current_user.is_authenticated %}
                 <a href="{{ url_for('dashboard')}}">Mi panel</a>
+                <a href="{{ url_for('nueva_ruta')}}">Añadir ruta</a>
                 <a href="{{ url_for('logout')}}">Cerrar sesión</a>
             {% else %}
-                <a href="{{ url_for('login')}}">Iniciar sesión</a>
+                <a href="{{ url_for('login')}}">Acceder</a>
             {% endif %}
         </nav>
     

@@ -27,7 +27,8 @@ class RutaDB(db.Model):
     tiempo = db.Column(db.String(10), nullable=False)
     desnivel = db.Column(db.Integer, nullable=False)
     tipo = db.Column(db.String(50), nullable=False)
-
+    velocidad = db.Column(db.Float, nullable=False)
+                          
     usuario_id = db.Column(
         db.Integer,
         db.ForeignKey("usuarios.id"),

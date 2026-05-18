@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   
+<div class="form-container">
+    <h2> Añadir nueva ruta</h2>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha" id="fecha" required>
+        </div>
+
+        <div class="form-group">
+            <label for="distancia">Distancia (km)</label>
+            <input type="number" step="0.01" name="distancia" id="distancia" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tiempo"> Tiempo (HH:MM)</label>
+            <input type="text" name="tiempo" id="tiempo" placeholder="02:15" required>
+        </div>
+
+        <div class="form-group">
+            <label for="desnivel"> Desnivel (m) </label>
+            <input type="number" name="desnivel" id="desnivel" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo">Tipo de ruta</label>
+            <select name="tipo" id="tipo" required>
+                <option value="MTB">MTB</option>
+                <option value="Carretera">Carretera</option>
+                <option value="Ciclocross">Ciclocross</option>
+                <option value="Gravel">Gravel</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit"> Guardar ruta</button>
+    </form>
+</div>
+
+{% endblock %}
+  
+    

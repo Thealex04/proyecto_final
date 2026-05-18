@@ -4,7 +4,7 @@ def generar_recomendacion(progreso):
     Genera una recomendación basada en el progreso
     que está teniendo el ciclista
     '''
-    indice = progreso["indice_progreso"]
+    indice = progreso.get("indice_progreso",0)
 
     if indice >= 15:
         return (
@@ -35,7 +35,7 @@ def recomendacion_velocidad(df):
     '''
     Analiza la velocidad media del ciclista
     '''
-    velocidad_media = df["velocidad_kmh"].mean()
+    velocidad_media = df["velocidad"].mean()
 
     if velocidad_media >= 30:
         return "Tu velocidad media es excelente."

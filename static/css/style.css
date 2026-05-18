@@ -395,6 +395,23 @@ textarea {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
+.form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    background: white;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.form-group select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99, 235, 0.15);
+}
+
 /* Checkbox para mostrar contraseña */
 .form-check {
     display: flex;

@@ -45,7 +45,7 @@ def calcular_velocidad(df):
     df = df.dropna(subset=['tiempo_horas'])
     df = df[df['tiempo_horas'] > 0]
 
-    df['velocidad_kmh'] = df['distancia'] / df['tiempo_horas']
+    df['velocidad'] = df['distancia'] / df['tiempo_horas']
 
     return df
 
@@ -93,8 +93,8 @@ def calcular_progreso(df):
     ultimas = df.tail(5)
 
     # calculamos las medias
-    velocidad_inicio = primeras['velocidad_kmh'].mean()
-    velocidad_fin = ultimas['velocidad_kmh'].mean()
+    velocidad_inicio = primeras['velocidad'].mean()
+    velocidad_fin = ultimas['velocidad'].mean()
 
     distancia_inicio = primeras['distancia'].mean()
     distancia_fin = ultimas['distancia'].mean()
