@@ -490,6 +490,173 @@ ul li {
     border-radius: 6px;
 }
 
+/* Dashboard */
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    color: #0b1d51;
+    font-weight: 800;
+    margin: 0;
+}
+
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#2563eb, #1d4ed8);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* Tarjetas de estadísticas */
+
+.starts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    font-size: 2.2rem;
+    color: #2563eb;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.stat-card p {
+    color:  #6b7280;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* Tarjetas generales */
+
+.dashboard-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 35px;
+}
+
+
+.dashboard-card h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #0b1d51;
+    font-size: 1.8rem;
+}
+
+/*Tabla de rutas */
+
+.table-responsive {
+    overflow-x: auto;
+} 
+
+.rutas-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rutas-table thead {
+    background: linear-gradient(135deg, #0b1d51, #1e3a8a);
+    color: white;
+}
+
+.rutas-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.rutas-table td {
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.rutas-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Recomendaciones */
+
+.recommendations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recommendations-list li {
+    background: #f8fafc;
+    border-left: 4px solid #2563eb;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Mensaje vacio */
+
+.empty-message {
+    color: #6b7280;
+    font-style: italic;
+    text-align: center;
+    padding: 30px;
+}
+
+
 /* Footer */
 
 footer {

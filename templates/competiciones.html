@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Proyecto de Ciclismo</title>
-    </head>
-    <body>
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-    {% block content %}
-    <h2>Competiciones históricas</h2>
-    <p>Aquí iran los ranking y estadísticas de carreras profesionales</p>
+{% block content %}
+<section class="competiciones-page">
+    <div class="container">
+        <h1 class="page-title"> Grandes Competiciones Ciclistas</h1>
+        <p>
+            Descubre los resultados de las carreras más 
+            importantes del ciclismo de carretera.
+        </p>
 
-    {% endblock %}
-    </body>
-</html>
+        <div class="competiciones-grid">
+            {% for comp in competiciones %}
+            <div class="competiciones-card">
+                <div class="competicion-header">
+                    <h2> {{ comp.nombre }}</h2>
+                    <span class="competicion-pais"> {{comp-pais }}</span>
+                </div>
+
+                <div class="competicion-body">
+                    <p><strong>Año: </strong> {{ comp.fecha }}</p>
+                    <p><strong>Ganador: </strong> {{ comp.lugar }}</p>
+                    <p><strong>Distancia: </strong> {{ comp.ganador }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section> 
+
+{% endblock %}
+   

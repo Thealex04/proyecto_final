@@ -2,20 +2,42 @@
 
 {% block content %}
 
-<div class="dashboard-container">
-
-    <h2> Mi Panel</h2>
-
-    {% if rutas|length == 0 %}
-        <p>Aún no has registrado ninguna ruta. </p>
+<section class="dashboard-container">
+    <div class="dashboard-container">
+        <h1> Mi Panel</h1>
         <a href="{{ url_for('nueva_ruta')}}" class="btn btn-primary">
-            Añadir mi primera ruta
+             Añadir nueva ruta
         </a>
-    {% else %}
+    </div>
 
-        <h3>Mis rutas</h3>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ rutas | length }}</h3>
+            <p>Rutas registradas</p>
+        </div>
 
-        <table class="tabla-rutas">
+        <div class="stat-card">
+            <h3>{{ estadisticas_rutas.distancia_total|round(1) if estadisticas_rutas else 0 }} km</h3>
+            <p>Distancia total</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ estadisticas_rutas.velocidad_media|round(1) if estadisticas_rutas else 0 }} km/h</h3>
+            <p>Velocidad media</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ estadisticas_rutas.desnivel_total|int if estadisticas_rutas else 0 }} m</h3>
+            <p>Desnivel acumulado</p>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>Mis rutas</h2>
+
+        {% if rutas %}
+        <div class="table-responsive">
+            <table class="rutas-table">
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -33,14 +55,32 @@
                     <td>{{ ruta.distancia }}</td>
                     <td>{{ ruta.tiempo }}</td>
                     <td>{{ ruta.desnivel }}</td>
-                    <td>{{ ruta.tipo }}</td>
+                    <td>
+                        <span class="badge">{{ruta.tipo }}</span> 
+                    </td>
                     <td>{{ ruta.velocidad|round(2) }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    
-    {% endif %}
-</div>
+        </div>
+        {% else %}
+        <p class="empty-message">
+            Todavía no has registrado ninguna ruta
+        </p>
+        {% endif %}
+    </div>
 
+    {% if recomendaciones %}
+    <div class="dashboard-card">
+        <h2>Recomendaciones personalizadas</h2>
+        <ul class="recommendations-list">
+            {% for recomendacion in recomendaciones %}
+            <li>{{ recomendacion }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    </div>
+</section>
 {% endblock %}
